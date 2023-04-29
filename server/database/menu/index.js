@@ -1,32 +1,32 @@
-import mongoose from mongoose
+import mongoose from "mongoose";
 
 const MenuSchema = new mongoose.Schema(
-    {
-        menu: [{
-            name: {
-                type: String,
-                required: true,
-            },
-            items: [
-                {
-                    type: mongoose.Types.ObjectId,
-                    ref: "foods",
-                }
-            ]
-    
-        }],
-        recommended: [
-            {
-                type: mongoose.Types.ObjectId,
-                ref: "foods",
-                unique: true,
-            }
-        ]
+  {
+    menu: [
+      {
+        name: {
+          type: String,
+          required: true,
+        },
+        items: [
+          {
+            type: mongoose.Types.ObjectId,
+            ref: "foods",
+          },
+        ],
+      },
+    ],
+    recommended: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "foods",
+        unique: true,
+      },
+    ],
+  },
+  {
+    timestamps: true,
+  }
+);
 
-},
-    {
-    timestamps : true,
-}
-)
-
-export default MenuModel = mongoose.model('menus', MenuSchema)
+export const MenuModel = mongoose.model("menus", MenuSchema);
