@@ -8,3 +8,17 @@
 - User (user related details, username, email, password)
 
 # Routers 
+
+# user
+ 1. /user/    (private)
+    - authorize the user
+    - parameters : none
+
+ 2. /user/:id  
+    - get user data based on id
+    - parameter : id
+
+ 3. /user/update/:id    (private)
+    - edit or update user data
+    - parameter : id
+    - body : updatable fields

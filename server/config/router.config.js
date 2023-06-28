@@ -30,7 +30,7 @@ export default (passport) => {
                     return done(null, doesUserExist)
         
                  } catch (error) {
-                    throw new Error(error);
+                    throw  (error);
         
     }
         })

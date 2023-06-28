@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema(
 // attachments
 // call at both time signup and login
 UserSchema.methods.generateJwtToken = function () {
-  return jwt.sign({ user: this._id.toString() }, "zomato");
+  return jwt.sign({ user: this._id.toString() }, process.env.JWTSECRET);
 };
 
 // helper functions
