@@ -3,6 +3,7 @@
 var _express = _interopRequireDefault(require("express"));
 var _dotenv = _interopRequireDefault(require("dotenv"));
 var _connection = _interopRequireDefault(require("./database/connection"));
+var _auth = _interopRequireDefault(require("./api/auth"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 // database connection
 
@@ -14,16 +15,15 @@ zomato.get("/", (req, res) => {
     message: "Server is running !!!"
   });
 });
+
+// auth/signup
+zomato.use("/auth", _auth.default);
 const PORT = 4000;
 zomato.listen(PORT, () => {
-  /*
-  ConnectDB().then(() => {
+  (0, _connection.default)().then(() => {
     console.log("Server is running... ");
-  })
-  .catch((error) => {
-    console.log("Server is running, but database connection failed...")
-    console.log(error)
+  }).catch(error => {
+    console.log("Server is running, but database connection failed...");
+    console.log(error);
   });
-  */
-  console.log("Server is running...");
 });

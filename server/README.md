@@ -6,3 +6,5 @@
 - Image (storing all the images related to the project)
 - Review (storing all the list of reviews i.e dinning or delivery)
 - User (user related details, username, email, password)
+
+# Routers 
