@@ -27,22 +27,22 @@
 
 # Food 
  1. /food/:id
-  - method : GET
-  - get food based on id
-  - params : food id
-  - access : Public
+    - method : GET
+    - get food based on id
+    - params : food id
+    - access : Public
 
  2. /food/r/:id
-  - method : GET
-  - get all food based on particular restaurant id
-  - params : restaurant id
-  - access : Public
+    - method : GET
+    - get all food based on particular restaurant id
+    - params : restaurant id
+    - access : Public
 
  3. /food/c/:id
-  - method : GET
-  - get all food based on particular category
-  - params : category
-  - access : Public
+    - method : GET
+    - get all food based on particular category
+    - params : category
+    - access : Public
 # user
  1. /user/    
     - method : GET
@@ -62,17 +62,15 @@
     - parameter : id
     - body : updatable fields
     - access : Private
-
-
 # Order
  1. /order/:id
-  - method : GET
-  - get all orders of a specific user based on user id
-  - parameter : user id
-  - access : Public
+    - method : GET
+    - get all orders of a specific user based on user id
+    - parameter : user id
+    - access : Public
 
  2.  /order/new
-  - method : PUT
-  - update or add a new order for a user
-  - parameters : none
-  - access : private
+    - method : PUT
+    - update or add a new order for a user
+    - parameters : none
+    - access : private
