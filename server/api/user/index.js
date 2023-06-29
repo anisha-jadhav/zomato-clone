@@ -2,6 +2,7 @@ import express from "express";
 
 import { UserModel } from "../../database/allModels";
 import passport from "passport";
+import { validateUpdateUser } from "../validation/common.validations";
 
 const Router = express.Router();
 
@@ -40,6 +41,7 @@ Router.get(
 Router.get("/:_id", async (req, res) => {
   try {
     const { _id } = req.params;
+    await validateId(req.params);
 
     const getUser = await UserModel.findById(_id);
 
@@ -50,7 +52,6 @@ Router.get("/:_id", async (req, res) => {
     const { fullName } = getUser;
 
     return res.json({ user: { fullName } });
-
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -65,32 +66,35 @@ Router.get("/:_id", async (req, res) => {
  *
  */
 
-Router.put("/update/:id",
+Router.put(
+  "/update/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-  try {
-    const { id } = req.params;
-    
-    const { userData } = req.body;
+    try {
+      const { id } = req.params;
 
-    // as id=f user try to change password he could not
-    // as the field is undefined
-    userData.password = undefined;
+      const { userData } = req.body;
+      await validateUpdateUser(req.body);
 
-    const updateUser = await UserModel.findByIdAndUpdate(
-      id
-      ,
-      {
-      $set : userData,
-      },
-      {
-        new: true,
-      });
-    
-    return res.json({user : updateUser})
-  } catch (error) {
-    return res.status(500).json({error: error.status})
+      // as if user try to change password he could not
+      // as the field is undefined
+      userData.password = undefined;
+
+      const updateUser = await UserModel.findByIdAndUpdate(
+        id,
+        {
+          $set: userData,
+        },
+        {
+          new: true,
+        }
+      );
+
+      return res.json({ user: updateUser });
+    } catch (error) {
+      return res.status(500).json({ error: error.status });
+    }
   }
-})
+);
 
 export default Router;

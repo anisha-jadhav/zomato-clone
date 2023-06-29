@@ -10,22 +10,22 @@
 
 # Routers 
 
-# Authorization
- 1. /auth/signup
+## Authorization
+ 1. `/auth/signup`
    - method : POST
    - create an new user account nd generate a specific jwt token for user
    - parameters : none
    - body params : email, phone
    - access : Private
 
-2. /auth/signin
+2. `/auth/signin`
    - method : POST
    - generate a specific jwt token for user
    - parameters : none
    - body params : email, password
    - access : Private
 
-# Food 
+## Food 
  1. /food/:id
     - method : GET
     - get food based on id
@@ -43,7 +43,7 @@
     - get all food based on particular category
     - params : category
     - access : Public
-# user
+## user
  1. /user/    
     - method : GET
     - authorize the user
@@ -62,7 +62,7 @@
     - parameter : id
     - body : updatable fields
     - access : Private
-# Order
+## Order
  1. /order/:id
     - method : GET
     - get all orders of a specific user based on user id
@@ -74,3 +74,55 @@
     - update or add a new order for a user
     - parameters : none
     - access : private
+
+## Review
+ 1. /review/:id
+    - method : GET
+    - get reviews of particular restaurant
+    - parameter : restaurant id
+    - access : Public 
+
+ 2. /review/new
+    - method : PUT
+    - add new food or restaurant review
+    - parameter : none
+    - body : complete review to add
+    - access : Private 
+
+ 3. /review/delete/:id
+    - method : DELETE
+    - delete my own review
+    - parameter : review id
+    - access : Private
+
+## Menu
+ 1. /menu/list/:id
+    - method : GET
+    - get all menu list of particular restaurant
+    - parameter : restaurant id
+    - access : Public
+
+ 2. /menu/images/:id
+    - method : GET
+    - get all images of particular menu
+    - parameter : menuImage id
+    - access : Public
+
+## Restaurants
+ 1. /restaurant/:city
+    - method : GET
+    - get all restaurant in city
+    - parameter : city
+    - access : Public
+
+ 2. /restaurant/:id
+    - method : GET
+    - get particular restaurant based on id
+    - parameter : restaurant id
+    - access : Public
+
+ 3. /restaurant/search/:searchString
+    - method : GET
+    - get restaurant based on name as search string
+    - parameter : search string (restaurant name)
+    - access : Public
