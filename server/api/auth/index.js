@@ -1,4 +1,5 @@
 import express from "express";
+import passport from "passport";
 
 import { UserModel } from "../../database/allModels";
 import { validateSignUp } from "../validation/auth.validation";
@@ -47,5 +48,43 @@ Router.post("/signin", async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 });
+
+ 
+/**
+ * Route    /google
+ * Desc     get user signin using google authentication
+ * Params   none
+ * Access   private
+ * Method   GET
+ *
+ */
+
+/*
+Router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email",
+    ],
+  })
+);
+
+// if your google authentication was fail then where should it redirect to user
+// it will redirect user to following route ->  '/'
+// if successful then redirect user to the front end
+
+Router.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "/" }),
+  (req, res) => {
+   // return res.status(200).json({
+    //  token: req.session.passport.user.token,
+    //});
+
+    return res.redirect(`http://localhost:3000/google/${req.session.passport.user.token}`)
+  }
+);
+*/
 
 export default Router;
