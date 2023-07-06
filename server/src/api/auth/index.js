@@ -2,7 +2,7 @@ import express from "express";
 import passport from "passport";
 
 import { UserModel } from "../../database/allModels";
-import { validateSignUp } from "../validation/auth.validation";
+import { validateSignUp } from "../../validation/auth.validation";
 
 const Router = express.Router();
 
@@ -49,7 +49,6 @@ Router.post("/signin", async (req, res) => {
   }
 });
 
- 
 /**
  * Route    /google
  * Desc     get user signin using google authentication

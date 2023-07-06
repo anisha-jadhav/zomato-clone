@@ -2,7 +2,7 @@ import express from "express";
 
 import { UserModel } from "../../database/allModels";
 import passport from "passport";
-import { validateUpdateUser } from "../validation/common.validations";
+import { validateUpdateUser } from "../../validation/common.validations";
 
 const Router = express.Router();
 

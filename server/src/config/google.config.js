@@ -1,6 +1,6 @@
 import googleOAuth from "passport-google-oauth2";
 
-import { UserModel } from "../database/user";
+import { UserModel } from "../../database/user";
 
 const GoogleStrategy = googleOAuth.Strategy;
 

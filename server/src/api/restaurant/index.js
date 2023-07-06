@@ -1,7 +1,10 @@
 import express from "express";
 
 import { RestaurantModel } from "../../database/allModels";
-import { validateRestaurantCity, validateSearchString } from "../validation/restaurant.validations";
+import {
+  validateRestaurantCity,
+  validateSearchString,
+} from "../../validation/restaurant.validations";
 
 const Router = express.Router();
 
@@ -41,7 +44,7 @@ Router.get("/", async (req, res) => {
 Router.get("/:_id", async (req, res) => {
   try {
     const { _id } = req.params;
-    await validateId(req.params)
+    await validateId(req.params);
     const restaurant = await RestaurantModel.findById(_id);
     if (!restaurant)
       return res.status(404).json({ error: "Restaurant does not exits" });
@@ -64,7 +67,7 @@ Router.get("/:_id", async (req, res) => {
 Router.get("/search/:searchString", async (req, res) => {
   try {
     const { searchString } = req.params;
-    await validateSearchString(req.params)
+    await validateSearchString(req.params);
     const restaurants = await RestaurantModel.find({
       name: { $regex: searchString, $options: "i" },
     });
