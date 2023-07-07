@@ -1,10 +1,38 @@
-import './App.css';
+import "./App.css";
+import { Route, Routes, Navigate } from "react-router-dom";
+
+// import pages
+import Checkout from "./pages/Checkout";
+import GoogleAuth from "./pages/Google.Auth";
+import Home from "./pages/Home.Page";
+import Restaurant from "./pages/Restaurant.page";
+
+// import components
+import Menu from "./components/Restaurant/Menu";
+import OrderOnline from "./components/Restaurant/OrderOnline";
+import Photos from "./components/Restaurant/Photos";
+import Overview from "./components/Restaurant/Overview";
+import Reviews from "./components/Restaurant/Reviews";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello to react app</h1>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Navigate to="/delivery" />} />
+        <Route path="/:type" element={<Home />} />
+        {/* <Route path="/restaurant/:id" element={<RedirectRestaurant />} /> */}
+        <Route path="/google/:token" element={<GoogleAuth />} />
+        <Route path="restaurant/:id" element={<Restaurant />}>
+          <Route path="overview" element={<Overview />} />
+          <Route path="order-online" element={<OrderOnline />} />
+          <Route path="reviews" element={<Reviews />} />
+          <Route path="menu" element={<Menu />} />
+          <Route path="photos" element={<Photos />} />
+        </Route>
+
+        <Route path="checkout/orders" element={<Checkout />} />
+      </Routes>
+    </>
   );
 }
 
