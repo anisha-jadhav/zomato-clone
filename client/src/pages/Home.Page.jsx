@@ -4,7 +4,8 @@ import React from 'react'
 import HomePageLayout from '../layouts/HomePage.layout'
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <>
+    <h1>Home Page</h1></>
   )
 }
 
