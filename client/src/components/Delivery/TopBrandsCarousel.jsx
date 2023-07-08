@@ -6,53 +6,51 @@ import { Navigation } from "swiper/modules";
 
 import DeliveryCategoryCard from "./DeliveryCategoryCard";
 
-const DeliveryCarousel = () => {
+const TopBrandsCarousel = () => {
   const categories = [
     {
       image:
-        "https://b.zmtcdn.com/data/dish_images/197987b7ebcd1ee08f8c25ea4e77e20f1634731334.png",
-      title: "Chicken",
+        "https://b.zmtcdn.com/data/brand_creatives/logos/0e6f4a6a6d54c88d548abaa04a0227bc_1625164827.png",
+      title: "McDonald's",
+      time: "24 min",
     },
     {
       image:
-        "https://b.zmtcdn.com/data/o2_assets/d0bd7c9405ac87f6aa65e31fe55800941632716575.png",
-      title: "Pizza",
+        "https://b.zmtcdn.com/data/brand_creatives/logos/6a11fd0f30c9fd9ceaff2f5b21f61d23_1617188211.png",
+      title: "Burger King",
+      time: "27 min",
     },
     {
       image:
-        "https://b.zmtcdn.com/data/dish_images/d19a31d42d5913ff129cafd7cec772f81639737697.png",
-      title: "Biryani",
+        "https://b.zmtcdn.com/data/brand_creatives/logos/80c09d718acddee05a655eb378bb442f_1617874818.png",
+      title: "KFC",
+      time: "31 min",
     },
     {
       image:
-        "https://b.zmtcdn.com/data/dish_images/c2f22c42f7ba90d81440a88449f4e5891634806087.png",
-      title: "Rolls",
+        "https://b.zmtcdn.com/data/brand_creatives/logos/c38f7540bcc5a38e918856ac06409056_1504531339.png",
+      title: "Pizza Hut",
+      time: "30 min",
     },
     {
       image:
-        "https://b.zmtcdn.com/data/dish_images/ccb7dc2ba2b054419f805da7f05704471634886169.png",
-      title: "Burges",
+        "https://b.zmtcdn.com/data/brand_creatives/logos/3c2a7f7e5fc15add88437a4891a7c229_1675833518.png",
+      title: "The Belgian Waffle Co.",
+      time: "28 min",
     },
     {
       image:
-        "https://b.zmtcdn.com/data/o2_assets/52eb9796bb9bcf0eba64c643349e97211634401116.png",
-      title: "Thali",
+        "https://b.zmtcdn.com/data/brand_creatives/logos/e56d0581cc1caa2c010a8eb6f9b2321b_1643013207.png",
+      title: "Jumboking Indian Burger",
+      time: "17 min",
     },
     {
       image:
-        "https://b.zmtcdn.com/data/dish_images/1437bc204cb5c892cb22d78b4347f4651634827140.png",
-      title: "Chaat",
+        "https://b.zmtcdn.com/data/brand_creatives/logos/11f0a050068db77b5b959dd97cc11965_1644900886.png",
+      title: "Natural Ice cream",
+      time: "20 min",
     },
-    {
-      image:
-        "https://b.zmtcdn.com/data/o2_assets/2b5a5b533473aada22015966f668e30e1633434990.png",
-      title: "Paratha",
-    },
-    {
-      image:
-        "https://b.zmtcdn.com/data/o2_assets/5dbdb72a48cf3192830232f6853735301632716604.png",
-      title: "Momos",
-    },
+    
   ];
 
   const slideConfig = {
@@ -82,8 +80,8 @@ const DeliveryCarousel = () => {
 
   return (
     <>
-      <h1 className="text-xl mt-4  md:mt-8 md:text-3xl md:font-semibold mb-5">
-        Inspiration for your first order
+      <h1 className="text-xl mt-4 md:mt-8 md:text-3xl md:font-semibold mb-5">
+        Top Brands For You
       </h1>
       <div className="lg:hidden grid grid-cols-3 md:grid-cols-4 gap-3 justify-center">
         {categories.map((food, index) => (
@@ -103,4 +101,4 @@ const DeliveryCarousel = () => {
   );
 };
 
-export default DeliveryCarousel;
+export default TopBrandsCarousel;

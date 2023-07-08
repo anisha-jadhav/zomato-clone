@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
 
 // components
-import DeliveryCarousel from './DeliveryCarousel'
-import RestaurantCard from '../RestaurantCard'
+import DeliveryCarousel from "./DeliveryCarousel";
+import RestaurantCard from "../RestaurantCard";
+import TopBrandsCarousel from "./TopBrandsCarousel";
 
 const Delivery = () => {
   const [restaurantList, setRestaurantList] = useState([
@@ -53,17 +54,20 @@ const Delivery = () => {
 
   return (
     <>
-      <DeliveryCarousel />
-      <h1 className="text-xl mt-4 mb-2 md:mt-8 md:text-3xl md:font-semibold">
-        Delivery Restaurants in Mumbai
-      </h1>
-      <div className="grid gap-0 md:gap-2 md:grid-cols-2 grid-cols-1 lg:grid-cols-3">
-        {restaurantList.map((restaurant) => (
-          <RestaurantCard {...restaurant} key={restaurant._id} />
-        ))}
+      <div className="container px-20">
+        <DeliveryCarousel />
+        <TopBrandsCarousel />
+        <h1 className="text-xl mt-4 mb-2 md:mt-8 md:text-3xl md:font-semibold">
+          Delivery Restaurants in Mumbai
+        </h1>
+        <div className="grid gap-0 md:gap-2 md:grid-cols-2 grid-cols-1 lg:grid-cols-3">
+          {restaurantList.map((restaurant) => (
+            <RestaurantCard {...restaurant} key={restaurant._id} />
+          ))}
+        </div>
       </div>
     </>
   );
 };
 
-export default Delivery
+export default Delivery;
