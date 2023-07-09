@@ -63,7 +63,7 @@ const RestaurantLayout = ({ children: Component, ...props }) => {
             <RiShareForwardLine className="text-zomato-400" /> Share
           </InfoButton>
         </div>
-        <div className="my-10">
+        <div className="my-10 sticky bg-white top-2 pt-2 z-10">
           <Tabs />
         </div>
         {Component}
