@@ -41,13 +41,13 @@ const Overview = () => {
     {
       rating: 3.5,
       isRestaurantReview: false,
-      createdAt: "Fri Oct 14 2022 20:20:34 GMT+0530 (India Standard Time)",
+      createdAt: "Fri July 07 2023 20:20:34 GMT+0530 (India Standard Time)",
       reviewText: "Very bad experience.",
     },
     {
       rating: 4.5,
       isRestaurantReview: false,
-      createdAt: "Fri Oct 14 2022 20:19:34 GMT+0530 (India Standard Time)",
+      createdAt: "Fri July 07 2023 02:19:34 GMT+0530 (India Standard Time)",
       reviewText: "Very good experience.",
     },
   ]);
