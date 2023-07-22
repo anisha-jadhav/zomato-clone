@@ -3,6 +3,7 @@ import passport from "passport";
 
 import { UserModel } from "../../database/allModels";
 import { validateSignUp } from "../../validation/auth.validation";
+import { validateSignIn } from "../../validation/auth.validation";
 
 const Router = express.Router();
 

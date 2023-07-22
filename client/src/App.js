@@ -1,4 +1,5 @@
 import "./App.css";
+import { useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 
 // import pages
@@ -17,7 +18,17 @@ import Reviews from "./components/Restaurant/Reviews";
 //layouts
 import RestaurantLayout from "./layouts/Restaurant.layout";
 
+// redux
+import { useDispatch } from "react-redux";
+import { getMySelf } from "./redux/reducers/user/user.action";
+
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMySelf());
+  }, [localStorage]);
+
   return (
     <>
       <Routes>

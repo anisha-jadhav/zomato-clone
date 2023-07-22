@@ -3,3 +3,5 @@
 /server/package-lock.json
 /server/.env
 /server/.babelrc
+/client/node_modules
+/client/package-lock.json
