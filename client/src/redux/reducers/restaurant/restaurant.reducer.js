@@ -10,7 +10,7 @@ const restaurantReducer = (state = initialState, action) => {
     case GET_RESTAURANT:
       return {
         ...state,
-        restaurants: { ...action.payload },
+        restaurants: [...action.payload],
       };
     case GET_SPECIFIC_RESTAURANT:
       return {

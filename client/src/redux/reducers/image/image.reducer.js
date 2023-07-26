@@ -1,4 +1,3 @@
-
 import { GET_IMAGE } from "./image.type";
 
 const initialState = {

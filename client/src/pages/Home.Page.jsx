@@ -22,6 +22,7 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(getRestaurant());
   }, []);
+  // empty dependency -> means it only run once
 
   return (
     <>

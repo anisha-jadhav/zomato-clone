@@ -3,33 +3,16 @@ import { IoMdArrowFropdown, IoCloseSharp } from "react-icons/io5";
 import { IoMdArrowDropup, IoMdArrowDropright } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
+
+// redux
+import { useSelector } from "react-redux";
+
 // components
 import FoodItem from "./FoodItem";
 
 const CartData = ({ toggle }) => {
-  const [cart, setCart] = useState([
-    {
-      image:
-        "https://b.zmtcdn.com/data/dish_photos/af1/fd1b012ebfbe82f2e5212b702ce19af1.jpg",
-      name: "Butter Pancakes with Bacon",
-      rating: 4.5,
-      price: 200,
-      description: "Rashers and bourbon caramel sauce.",
-      quantity: 3,
-      totalPrice: 600,
-    },
-    {
-      image:
-        "https://b.zmtcdn.com/data/dish_photos/077/28e7baadea310b7b337fd2fb3f653077.jpg",
-      name: "Amritsari Fish Tikka",
-      rating: 5,
-      price: 250,
-      quantity: 1,
-      totalPrice: 250,
-      description:
-        "Fish marinated in flavourful lemon-chilli masala roasted in the tandoor with care. Serves 2-3 people.",
-    },
-  ]);
+  
+   const cart = useSelector((glocalState) => glocalState.cart.cart);
   const navigate = useNavigate();
   const continueToCheckout = () => navigate("/checkout/orders");
 
@@ -61,29 +44,7 @@ const CartData = ({ toggle }) => {
 const CartContainer = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [cart, setCart] = useState([
-    {
-      image:
-        "https://b.zmtcdn.com/data/dish_photos/af1/fd1b012ebfbe82f2e5212b702ce19af1.jpg",
-      name: "Butter Pancakes with Bacon",
-      rating: 4.5,
-      price: 200,
-      description: "Rashers and bourbon caramel sauce.",
-      quantity: 3,
-      totalPrice: 600,
-    },
-    {
-      image:
-        "https://b.zmtcdn.com/data/dish_photos/077/28e7baadea310b7b337fd2fb3f653077.jpg",
-      name: "Amritsari Fish Tikka",
-      rating: 5,
-      price: 250,
-      quantity: 1,
-      totalPrice: 250,
-      description:
-        "Fish marinated in flavourful lemon-chilli masala roasted in the tandoor with care. Serves 2-3 people.",
-    },
-  ]);
+  const cart = useSelector((glocalState) => glocalState.cart.cart);
 
   const toggleCart = () => setIsOpen((prev) => !prev);
   const closeCart = () => setIsOpen(false);
@@ -119,3 +80,58 @@ const CartContainer = () => {
 };
 
 export default CartContainer;
+/*
+
+const [cart, setCart] = useState([
+    {
+      image:
+        "https://b.zmtcdn.com/data/dish_photos/af1/fd1b012ebfbe82f2e5212b702ce19af1.jpg",
+      name: "Butter Pancakes with Bacon",
+      rating: 4.5,
+      price: 200,
+      description: "Rashers and bourbon caramel sauce.",
+      quantity: 3,
+      totalPrice: 600,
+    },
+    {
+      image:
+        "https://b.zmtcdn.com/data/dish_photos/077/28e7baadea310b7b337fd2fb3f653077.jpg",
+      name: "Amritsari Fish Tikka",
+      rating: 5,
+      price: 250,
+      quantity: 1,
+      totalPrice: 250,
+      description:
+        "Fish marinated in flavourful lemon-chilli masala roasted in the tandoor with care. Serves 2-3 people.",
+    },
+  ]);
+
+*/
+
+/*
+
+const [cart, setCart] = useState([
+    {
+      image:
+        "https://b.zmtcdn.com/data/dish_photos/af1/fd1b012ebfbe82f2e5212b702ce19af1.jpg",
+      name: "Butter Pancakes with Bacon",
+      rating: 4.5,
+      price: 200,
+      description: "Rashers and bourbon caramel sauce.",
+      quantity: 3,
+      totalPrice: 600,
+    },
+    {
+      image:
+        "https://b.zmtcdn.com/data/dish_photos/077/28e7baadea310b7b337fd2fb3f653077.jpg",
+      name: "Amritsari Fish Tikka",
+      rating: 5,
+      price: 250,
+      quantity: 1,
+      totalPrice: 250,
+      description:
+        "Fish marinated in flavourful lemon-chilli masala roasted in the tandoor with care. Serves 2-3 people.",
+    },
+  ]);
+
+  */

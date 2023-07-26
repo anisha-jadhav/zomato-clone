@@ -20,8 +20,7 @@ import { getImage } from "../redux/reducers/image/image.action";
 
 const RestaurantLayout = ({ children: Component, ...props }) => {
   const [restaurant, setRestaurant] = useState({
-    images: [
-    ],
+    images: [],
     name: "",
     cuisine: "",
     address: "",
@@ -34,17 +33,22 @@ const RestaurantLayout = ({ children: Component, ...props }) => {
 
   useEffect(() => {
     dispatch(getSpecificRestaurant(id)).then((data) => {
+      //console.log(data.payload.restaurant.photos)
+      
       setRestaurant((prev) => ({
         ...prev,
         ...data.payload.restaurant,
       }));
 
       dispatch(getImage(data.payload.restaurant.photos)).then((data) => {
+      // console.log(data.payload.images);
         setRestaurant((prev) => ({
           ...prev,
+
           images: data.payload.images,
         }));
       });
+      
     });
   }, []);
 

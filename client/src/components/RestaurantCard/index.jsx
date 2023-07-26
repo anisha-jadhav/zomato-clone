@@ -4,25 +4,24 @@ import { AiTwotoneStar } from "react-icons/ai";
 
 // redux
 import { useDispatch } from "react-redux";
-import { getImage } from "../../redux/reducers/image/image.action"
+import { getImage } from "../../redux/reducers/image/image.action";
 
 const RestaurantCard = (props) => {
   const [image, setImage] = useState({
-    images: [
-    
-    ],
+    images: [],
   });
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getImage(props.photos)).then((data) => {
+      //console.log(data.payload)
       const images = data.payload.images;
       setImage((prev) => ({ ...prev, images }));
     });
   }, [props.photos]);
 
-  
+  //console.log(image)
   return (
     <Link
       to={`/restaurant/${props._id}/overview`}
@@ -44,7 +43,7 @@ const RestaurantCard = (props) => {
               )}
             </div>
             <img
-              src={image.images.length && image.images[0].location}
+              src={image.images.length  && image.images[0].location}
               alt="food"
               className="w-full h-full rounded-2xl"
             />

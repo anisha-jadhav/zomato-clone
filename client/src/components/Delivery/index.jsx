@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import RestaurantCard from "../RestaurantCard";
+import RestaurantCard from "../RestaurantCard/index";
 
 // components
 import DeliveryCarousel from "./DeliveryCarousel";
