@@ -17,18 +17,15 @@ const Router = express.Router();
 Router.get("/list/:_id", async (req, res) => {
   try {
     const { _id } = req.params;
+    const menus = await MenuModel.findById(_id);
 
-    await validateId(req.params);
-
-    const food = await MenuModel.findById(_id);
-
-    if (!food) {
+    if (!menus) {
       return res
         .status(404)
         .json({ error: "No menu present for this restaurant" });
     }
 
-    return res.json({ food });
+    return res.json({ menus });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -44,15 +41,17 @@ Router.get("/list/:_id", async (req, res) => {
  *
  */
 
-Router.get("/images/:id", async (req, res) => {
+Router.get("/image/:_id", async (req, res) => {
   try {
-    const { id } = req.params;
-    await validateId(req.params);
-    const getImages = await ImageModel.findById(id);
-    if (!getImages) {
-      return res.status(404).json({ error: "No menu images found" });
+    const { _id } = req.params;
+
+    const menuImages = await ImageModel.findById(_id);
+
+    if (!menuImages) {
+      return res.status(404).json({ message: "No menu images found." });
     }
-    return res.json({ menuImages : getImages });
+
+    return res.json({ menuImages });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
