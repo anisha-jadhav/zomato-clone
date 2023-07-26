@@ -54,11 +54,11 @@ Router.post("/", upload.single("file"), async (req, res) => {
     const uploadImage = await s3Upload(bucketOptions);
 
     const dbUpload = await ImageModel.create({
-      images: [
-        {
-          location: uploadImage.Location,
-        },
-      ],
+      images: {
+        
+        location: uploadImage.Location,
+        
+      },
     });
 
     return res.status(500).json({ dbUpload });
