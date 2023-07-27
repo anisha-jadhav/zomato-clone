@@ -7,7 +7,8 @@ export const signIn = (userData) => async (dispatch) => {
   try {
     const User = await axios({
       method: "POST",
-      url:  `${process.env.REACT_APP_CLIENT_URL}auth/signin`,
+      url: "http://localhost:3000/auth/signin",
+      // url: `${process.env.REACT_APP_CLIENT_URL}auth/signin`,
       data: { credentials: userData },
     });
     localStorage.setItem(
@@ -17,7 +18,6 @@ export const signIn = (userData) => async (dispatch) => {
     axios.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${User.data.token}`;
-
     return dispatch({ type: SIGN_IN, payload: User.data });
   } catch (error) {
     return dispatch({ type: "ERROR", payload: error });
@@ -28,7 +28,7 @@ export const signUp = (userData) => async (dispatch) => {
   try {
     const User = await axios({
       method: "POST",
-      url: `${process.env.REACT_APP_CLIENT_URL}auth/signup`,
+      url: `http://localhost:3000/auth/signup`,
       data: { credentials: userData },
     });
 

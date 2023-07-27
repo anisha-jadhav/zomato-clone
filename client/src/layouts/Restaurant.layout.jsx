@@ -33,7 +33,6 @@ const RestaurantLayout = ({ children: Component, ...props }) => {
 
   useEffect(() => {
     dispatch(getSpecificRestaurant(id)).then((data) => {
-      //console.log(data.payload.restaurant.photos)
       
       setRestaurant((prev) => ({
         ...prev,
@@ -41,7 +40,6 @@ const RestaurantLayout = ({ children: Component, ...props }) => {
       }));
 
       dispatch(getImage(data.payload.restaurant.photos)).then((data) => {
-      // console.log(data.payload.images);
         setRestaurant((prev) => ({
           ...prev,
 

@@ -23,7 +23,7 @@ const Signin = ({ isOpen, setIsOpen }) => {
 
   const dispatch = useDispatch();
 
-   const submit = async () => {
+  const submit = async () => {
      await dispatch(signIn(userData));
      await dispatch(getMySelf());
      closeModal();
@@ -31,7 +31,7 @@ const Signin = ({ isOpen, setIsOpen }) => {
    };
 
   const googleSignIn = () =>
-    (window.location.href = `${process.env.REACT_APP_CLIENT_URL}auth/google`);
+    (window.location.href = "http://localhost:3000/auth/google");
 
   return (
     <>

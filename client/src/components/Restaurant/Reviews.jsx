@@ -14,13 +14,13 @@ const Reviews = () => {
   const dispatch = useDispatch();
 
   const updatedReviews = useSelector(
-    (globalState) => globalState.review.reviews.getReview,
-    //console.log(globalState.review.reviews.reviews)
+    (globalState) => globalState.review.reviews.getReview
+    //.log(globalState.review.reviews.reviews)
   );
-//console.log("===",updatedReviews)
+  //.log("===",updatedReviews)
   useEffect(() => {
     dispatch(getReview(id)).then((data) => {
-     // console.log("-->", data.payload);
+      // .log("-->", data.payload);
       setReviews(data.payload.getReview);
     });
   }, []);
@@ -30,9 +30,9 @@ const Reviews = () => {
       setReviews(updatedReviews);
     }
   }, [updatedReviews]);
-//console.log(updatedReviews);
-//  console.log(reviews.length)
-  
+  //.log(updatedReviews);
+  //  .log(reviews.length)
+
   return (
     <div className="w-full h-full flex-col md:flex md:flex-row relative gap-5">
       <div className="w-full md:w-8/12 flex flex-col gap-3">
@@ -47,7 +47,7 @@ const Reviews = () => {
         style={{ height: "fit-content" }}
         className="hidden md:flex md:w-4/12 sticky rounded-xl top-20 bg-white py-4 px-4 shadow-md flex-col gap-4"
       >
-        <AddReviewCard/>
+        <AddReviewCard />
       </aside>
     </div>
   );
