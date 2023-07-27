@@ -6,9 +6,8 @@ export const getFood = (foodId) => async (dispatch) => {
   try {
     const Food = await axios({
       method: "GET",
-      url: `${process.env.REACT_APP_CLIENT_URL}food/${foodId}`,
+      url: `http://localhost:3000/food/${foodId}`,
     });
-    //console.log("food -> " ,Food)
     return dispatch({ type: GET_FOOD, payload: Food.data });
   } catch (error) {
     dispatch({ type: "ERROR", payload: error });
@@ -19,7 +18,7 @@ export const getFoodList = (menuId) => async (dispatch) => {
   try {
     const Menu = await axios({
       method: "GET",
-      url: `${process.env.REACT_APP_CLIENT_URL}menu/list/${menuId}`,
+      url: `http://localhost:3000/menu/list/${menuId}`,
     });
 
     return dispatch({ type: GET_FOOD_LIST, payload: Menu.data });

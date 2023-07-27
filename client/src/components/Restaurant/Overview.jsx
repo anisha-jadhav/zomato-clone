@@ -30,14 +30,12 @@ const { id } = useParams;
     const reduxState = useSelector(
       (globalState) => globalState.restaurant.selectedRestaurant.restaurant
   );
-  //console.log("->" ,reduxState);
   
    useEffect(() => {
      if (reduxState) {
        setRestaurant(reduxState);
      }
    }, [reduxState]);
-  //console.log("->->", reduxState.menuImages);
 
     useEffect(() => {
       if (reduxState) {
@@ -45,17 +43,14 @@ const { id } = useParams;
           const images = [];
           data.payload.images.map(({ location }) => images.push(location));
           setMenuImages(images);
-          //console.log(">>>",images)
         });
 
         dispatch(getReview(reduxState?._id)).then((data) => {
-          //console.log(">>>",data.payload.getReview)//.getReview)
           setReviews(data.payload.getReview);
-          //console.log("->",reviews)
-          //console.log(reviews.length);
         });
       }
     }, [reduxState]);
+    
 
 
   const slideConfig = {

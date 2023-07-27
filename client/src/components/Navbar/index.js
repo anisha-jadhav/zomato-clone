@@ -67,7 +67,7 @@ const dispatch = useDispatch();
                 src="/images/avatar.png"
                 alt="avatar"
                 className="w-full h-full rounded-full object-cover"
-              />
+              /> <user className="fullName"></user>
             </div>
             {isDropdownOpen && (
               <div className="absolute shadow-lg py-3 -bottom-14 w-36 z-20 flex flex-col gap-2 bg-white border border-gray-200">
@@ -162,13 +162,14 @@ const LargeNav = ({
           <>
             <div
               onClick={() => setIsDropdownOpen((prev) => !prev)}
-              className="border border-gray-300 text-zomato-400 w-9 h-9 rounded-full"
+              className="border gap-2 flex border-gray-300 w-9 h-9 rounded-full"
             >
               <img
                 src="/images/avatar.png"
                 alt="avatar"
                 className="w-full h-full rounded-full object-cover"
               />
+              <div className="text-black-800">{user.fullName}</div>
             </div>
             {isDropdownOpen && (
               <div className="absolute shadow-lg py-3 -bottom-14 -right-0 w-36 z-20 flex flex-col gap-2 bg-white border border-gray-200">

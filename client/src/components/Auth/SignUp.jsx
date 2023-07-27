@@ -32,7 +32,7 @@ const submit = async () => {
 };
 
   const googleSignUp = () =>
-    (window.location.href = `${process.env.REACT_APP_CLIENT_URL}auth/google`);
+    (window.location.href = "http://localhost:3000/auth/google");
 
   return (
     <>
