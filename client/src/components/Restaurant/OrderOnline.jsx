@@ -1,142 +1,211 @@
-import React, { useState, useEffect } from "react";
-import { AiOutlineCompass } from "react-icons/ai";
-import { BiTimeFive } from "react-icons/bi";
+import React, { useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { IoMdArrowDropright } from "react-icons/io";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 // components
-import FloatMenuBtn from "../OrderOnline/FloatMenuBtn";
-import FoodList from "../OrderOnline/FoodList";
-import MenuListContainer from "../OrderOnline/MenuListContainer";
+import MenuCollection from "./MenuCollection.jsx";
+import MenuSimilarRestaurantCard from "./MenuSimilarRestaurantCard";
+import ReviewCard from "../Reviews/ReviewCard";
+import MapView from "./MapView";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { getFoodList } from "../../redux/reducers/food/food.action";
+import { useEffect } from "react";
+import { getReview } from "../../redux/reducers/review/review.action";
+import { getImage } from "../../redux/reducers/image/image.action";
 
-const OrderOnline = () => {
+const Overview = () => {
+  const [restaurant, setRestaurant] = useState({ cuisine: [] });
+  const [menuImages, setMenuImages] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
-   const [menu, setMenu] = useState([]);
-  const [selected, setSelected] = useState("");
-
-  const onClickHandler = (e) => {
-    if (e.target.id) {
-      setSelected(e.target.id);
-    }
-    return;
-  };
-
+  const { id } = useParams;
   const dispatch = useDispatch();
 
-  const restaurant = useSelector(
-    (globaldata) => globaldata.restaurant.selectedRestaurant.restaurant
+  const reduxState = useSelector(
+    (globalState) => globalState.restaurant.selectedRestaurant.restaurant
   );
 
   useEffect(() => {
-    restaurant &&
-      dispatch(getFoodList(restaurant.menu)).then((data) => {
-        setMenu(data.payload.menus.menu);
+    if (reduxState) {
+      setRestaurant(reduxState);
+    }
+  }, [reduxState]);
+
+  useEffect(() => {
+    if (reduxState) {
+      dispatch(getImage(reduxState?.menuImages)).then((data) => {
+        const images = [];
+        data.payload.images.map(({ location }) => images.push(location));
+        setMenuImages(images);
       });
-  }, [restaurant]);
+
+      dispatch(getReview(reduxState?._id)).then((data) => {
+        setReviews(data.payload.getReview);
+      });
+    }
+  }, [reduxState]);
+
+  const slideConfig = {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    pagination: {
+      clickable: true,
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 10,
+      },
+      1024: {
+        slidesPerView: 2,
+        spaceBetween: 0,
+      },
+    },
+    modules: [Navigation],
+    className: "diningSwiper",
+    navigation: true,
+  };
+
+  const getLatLong = (mapAddress) => {
+    return mapAddress?.split(",").map((item) => parseFloat(item));
+  };
 
   return (
-    <>
-      <div className="w-full items-start flex">
-        <aside className="sticky top-16 hidden md:flex flex-col gap-1 border-r overflow-y-scroll border-gray-200  w-1/4 h-screen">
-          {menu.map((item, index) => (
-            <MenuListContainer
-              {...item}
+    <div className="flex flex-col gap-5 md:flex-row relative">
+      <div className="w-full md:w-8/12">
+        <h2 className="font-semibold text-lg md:text-xl my-4">
+          About this place
+        </h2>
+        <div className="flex justify-between items-center">
+          <h4 className="text-lg font-medium">Menu</h4>
+          <Link to={`/restaurant/${id}/menu`}>
+            <span className="flex items-center gap-1 text-zomato-400">
+              See all menu <IoMdArrowDropright />
+            </span>
+          </Link>
+        </div>
+
+        <div className="flex flex-wrap gap-3 my-4">
+          <MenuCollection
+            menuTitle="Menu"
+            pages={menuImages.length}
+            images={menuImages}
+          />
+        </div>
+
+        <h4 className="text-lg font-medium my-4">Cuisines</h4>
+        <div className="flex flex-wrap gap-2">
+          {restaurant?.cuisine.map((cuisineName, index) => (
+            <span
               key={index}
-              onClickHandler={onClickHandler}
-              selected={selected}
-              target={index}
-            />
+              className="border border-gray-600 text-blue-600 px-2 py-1 rounded-full"
+            >
+              {cuisineName}
+            </span>
           ))}
-        </aside>
-        <div className="w-full px-3 md:w-3/4  sticky overflow-auto h-screen top-16">
-          <div className="pl-3 mb-4">
-            <h2 className="text-xl font-semibold">Order Online</h2>
-            <h4 className="flex items-center gap-2 font-light text-gray-500">
-              <AiOutlineCompass /> Live Track Your Order | <BiTimeFive /> 45 min
-            </h4>
-          </div>
-          <section className="flex  overflow-y-screen flex-col gap-3 md:gap-5">
-            {menu.map((item, index) => (
-              <FoodList key={index} {...item} target={index} />
+        </div>
+
+        <div className="my-4">
+          <h4 className="text-lg font-medium">Average Cost</h4>
+          <h6>₹{restaurant.averageCost} for one order (approx.)</h6>
+          <small className="text-gray-500">
+            Exclusive of applicable taxes and charges, if any.
+          </small>
+        </div>
+
+        <div className="flex flex-col-reverse">
+          <div className="my-4">
+            <h4 className="text-lg font-medium">{restaurant.name} Reviews</h4>
+            {/*}  <ReactStars
+              count={5}
+              onChange={(newRating) => console.log(newRating)}
+              size={24}
+              activeColor="#ffd700"
+            /> 
+          */}
+            {reviews.map((review, index) => (
+              <ReviewCard {...review} key={index} />
             ))}
-          </section>
+          </div>
+
+          <div className="my-4">
+            <h4 className="text-lg font-medium">Similar Restaurants</h4>
+            <div>
+              <Swiper {...slideConfig}>
+                <SwiperSlide>
+                  <MenuSimilarRestaurantCard
+                    image="https://b.zmtcdn.com/data/pictures/chains/3/307893/f606e2cc225f298f77b0bf9673e96dbe_featured_v2.jpg"
+                    title="Bikkgane Biryani"
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <MenuSimilarRestaurantCard
+                    image="https://b.zmtcdn.com/data/pictures/chains/2/18363082/029c99fa45772a9c162983d13861d864_featured_v2.jpg"
+                    title="Behrouz Biryani"
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <MenuSimilarRestaurantCard
+                    image="https://b.zmtcdn.com/data/pictures/chains/4/844/c2aff8d94b55d820df98053ce1b8d9cb_featured_v2.jpg"
+                    title="Khan Chacha"
+                  />
+                </SwiperSlide>
+              </Swiper>
+            </div>
+          </div>
+
+          <div className="my-4 w-full md:hidden flex flex-col gap-4">
+            <MapView
+              title="McDonald's"
+              phno="+193423542345"
+              mapLocation={getLatLong("28.64121406271755, 77.21955482132051")}
+              address="H-5/6, Plaza Building, Connaught Place, New Delhi"
+            />
+          </div>
         </div>
       </div>
-      <FloatMenuBtn
-        menu={menu}
-        onClickHandler={onClickHandler}
-        selected={selected}
-      />
-    </>
+      <aside
+        style={{ height: "fit-content" }}
+        className="hidden md:flex md:w-4/12 sticky rounded-xl top-20 bg-white py-4 px-4 shadow-md flex-col gap-4"
+      >
+        <MapView
+          title="McDonald's"
+          phno="+193423542345"
+          mapLocation={getLatLong("28.64121406271755, 77.21955482132051")}
+          latAndLong={"28.64121406271755, 77.21955482132051"}
+          address="H-5/6, Plaza Building, Connaught Place, New Delhi"
+        />
+      </aside>
+    </div>
   );
 };
 
-export default OrderOnline;
-
+export default Overview;
 /*
-
-const [menu, setMenu] = useState([
-    {
-      name: "Today's Special",
-      items: [
-        {
-          image:
-            "https://b.zmtcdn.com/data/dish_photos/af1/fd1b012ebfbe82f2e5212b702ce19af1.jpg",
-          name: "Butter Pancakes with Bacon",
-          rating: 4.5,
-          price: 695,
-          description: "Rashers and bourbon caramel sauce.",
-        },
-        {
-          image:
-            "https://b.zmtcdn.com/data/dish_photos/077/28e7baadea310b7b337fd2fb3f653077.jpg",
-          name: "Amritsari Fish Tikka",
-          rating: 5,
-          price: 545,
-          description:
-            "Fish marinated in flavourful lemon-chilli masala roasted in the tandoor with care. Serves 2-3 people.",
-        },
-        {
-          image:
-            "https://b.zmtcdn.com/data/dish_photos/599/111dd44381fecc63bb4bf37ab8179599.jpg",
-          name: "Amritsari Fish Tikka",
-          rating: 3.5,
-          price: 375,
-          description:
-            "Spiced chicken minced and toasted served with butter buns.",
-        },
-      ],
-    },
-    {
-      name: "Soup",
-      items: [
-        {
-          image:
-            "https://b.zmtcdn.com/data/dish_photos/c7b/da86667e2a69ff4467c4155a7219fc7b.jpg",
-          name: "Chicken & Corn Soup",
-          rating: "4.5",
-          price: "1970",
-          description: "",
-        },
-        {
-          image:
-            "https://b.zmtcdn.com/data/dish_photos/c3c/7ed2652d58a67ce963704db111b44c3c.jpg",
-          name: "Chicken Manchow Soup",
-          rating: "4",
-          price: "190",
-          description: "",
-        },
-        {
-          image:
-            "https://b.zmtcdn.com/data/dish_photos/03e/1834a3a8fb1d08bba554e6c35ee6d03e.jpg",
-          name: "Hot & Sour Soup",
-          rating: "3",
-          price: "165",
-          description: "",
-        },
-      ],
-    },
-  ]);
-  */
+const [restaurant, setRestaurant] = useState({
+    _id: "124ksjf435245jv34fg3",
+    isPro: true,
+    isOff: true,
+    name: "Nathu's Sweets",
+    restaurantReviewValue: "3.7",
+    cuisine: [
+      "Mithai",
+      "South Indian",
+      "Chinese",
+      "Street Food",
+      "Fast Food",
+      "Desserts",
+      "North Indian",
+    ],
+    averageCost: "450",
+  });
+*/

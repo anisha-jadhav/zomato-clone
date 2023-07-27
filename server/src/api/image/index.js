@@ -55,9 +55,7 @@ Router.post("/", upload.single("file"), async (req, res) => {
 
     const dbUpload = await ImageModel.create({
       images: {
-        
         location: uploadImage.Location,
-        
       },
     });
 

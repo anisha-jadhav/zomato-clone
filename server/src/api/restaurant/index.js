@@ -4,7 +4,7 @@ import { RestaurantModel } from "../../database/allModels";
 import {
   validateRestaurantCity,
   validateSearchString,
-} from "../../validation/restaurant.validations";
+} from "../../validation/restaurant.validation";
 
 const Router = express.Router();
 

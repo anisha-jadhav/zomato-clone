@@ -1,4 +1,4 @@
-# real
+
 # API Planning
 - Auth (for authorization of user, generate unique jwt token for each user logged in)
 - Food (food items and their details)

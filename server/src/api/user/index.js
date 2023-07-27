@@ -2,7 +2,7 @@ import express from "express";
 
 import { UserModel } from "../../database/allModels";
 import passport from "passport";
-import { validateUpdateUser } from "../../validation/common.validations";
+import { validateUpdateUser } from "../../validation/common.validation";
 
 const Router = express.Router();
 
@@ -41,7 +41,7 @@ Router.get(
 Router.get("/:_id", async (req, res) => {
   try {
     const { _id } = req.params;
-    await validateId(req.params);
+    //await validateId(req.params);
 
     const getUser = await UserModel.findById(_id);
 

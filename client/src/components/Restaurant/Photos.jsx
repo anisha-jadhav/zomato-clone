@@ -5,13 +5,11 @@ import ImageViewer from "react-simple-image-viewer";
 import { useDispatch, useSelector } from "react-redux";
 import getImage from "../../redux/reducers/image/image.action";
 
-
 // components
 import PhotoCollection from "./PhotoCollection";
 
 const Photos = () => {
-  
- const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -34,7 +32,6 @@ const Photos = () => {
     }
   }, [reduxState]);
 
-  
   return (
     <>
       {isMenuOpen && (

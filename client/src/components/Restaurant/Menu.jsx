@@ -7,23 +7,23 @@ import getImage from "../../redux/reducers/image/image.action";
 import MenuCollection from "./MenuCollection";
 
 const Menu = () => {
- const [menus, setMenus] = useState([]);
+  const [menus, setMenus] = useState([]);
 
- const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
- const reduxState = useSelector(
-   (globalState) => globalState.restaurant.selectedRestaurant.restaurant
- );
+  const reduxState = useSelector(
+    (globalState) => globalState.restaurant.selectedRestaurant.restaurant
+  );
 
- useEffect(() => {
-   if (reduxState) {
-     dispatch(getImage(reduxState?.menuImages)).then((data) => {
-       const images = [];
-       data.payload.images.map(({ location }) => images.push(location));
-       setMenus(images);
-     });
-   }
- }, [reduxState]);
+  useEffect(() => {
+    if (reduxState) {
+      dispatch(getImage(reduxState?.menuImages)).then((data) => {
+        const images = [];
+        data.payload.images.map(({ location }) => images.push(location));
+        setMenus(images);
+      });
+    }
+  }, [reduxState]);
 
   return (
     <div className="flex flex-wrap gap-3">

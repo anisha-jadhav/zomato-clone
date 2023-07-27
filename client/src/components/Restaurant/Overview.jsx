@@ -19,39 +19,37 @@ import { getReview } from "../../redux/reducers/review/review.action";
 import { getImage } from "../../redux/reducers/image/image.action";
 
 const Overview = () => {
+  
+  const [restaurant, setRestaurant] = useState({ cuisine: [] });
+  const [menuImages, setMenuImages] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
-const [restaurant, setRestaurant] = useState({ cuisine: [] });
-const [menuImages, setMenuImages] = useState([]);
-const [reviews, setReviews] = useState([]);
-
-const { id } = useParams;
+  const { id } = useParams;
   const dispatch = useDispatch();
-  
-    const reduxState = useSelector(
-      (globalState) => globalState.restaurant.selectedRestaurant.restaurant
+
+  const reduxState = useSelector(
+    (globalState) => globalState.restaurant.selectedRestaurant.restaurant
   );
-  
-   useEffect(() => {
-     if (reduxState) {
-       setRestaurant(reduxState);
-     }
-   }, [reduxState]);
 
-    useEffect(() => {
-      if (reduxState) {
-        dispatch(getImage(reduxState?.menuImages)).then((data) => {
-          const images = [];
-          data.payload.images.map(({ location }) => images.push(location));
-          setMenuImages(images);
-        });
+  useEffect(() => {
+    if (reduxState) {
+      setRestaurant(reduxState);
+    }
+  }, [reduxState]);
 
-        dispatch(getReview(reduxState?._id)).then((data) => {
-          setReviews(data.payload.getReview);
-        });
-      }
-    }, [reduxState]);
-    
+  useEffect(() => {
+    if (reduxState) {
+      dispatch(getImage(reduxState?.menuImages)).then((data) => {
+        const images = [];
+        data.payload.images.map(({ location }) => images.push(location));
+        setMenuImages(images);
+      });
 
+      dispatch(getReview(reduxState?._id)).then((data) => {
+        setReviews(data.payload.getReview);
+      });
+    }
+  }, [reduxState]);
 
   const slideConfig = {
     slidesPerView: 1,
@@ -119,7 +117,7 @@ const { id } = useParams;
 
         <div className="my-4">
           <h4 className="text-lg font-medium">Average Cost</h4>
-          <h6>₹{ restaurant.averageCost} for one order (approx.)</h6>
+          <h6>₹{restaurant.averageCost} for one order (approx.)</h6>
           <small className="text-gray-500">
             Exclusive of applicable taxes and charges, if any.
           </small>

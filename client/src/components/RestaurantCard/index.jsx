@@ -41,7 +41,7 @@ const RestaurantCard = (props) => {
               )}
             </div>
             <img
-              src={image.images.length  && image.images[0].location}
+              src={image.images.length && image.images[0].location}
               alt="food"
               className="w-full h-full rounded-2xl"
             />

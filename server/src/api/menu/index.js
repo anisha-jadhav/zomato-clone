@@ -31,7 +31,6 @@ Router.get("/list/:_id", async (req, res) => {
   }
 });
 
-
 /**
  * Route    /images
  * Desc     get all list of menu images with id

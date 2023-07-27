@@ -24,11 +24,11 @@ const Signin = ({ isOpen, setIsOpen }) => {
   const dispatch = useDispatch();
 
   const submit = async () => {
-     await dispatch(signIn(userData));
-     await dispatch(getMySelf());
-     closeModal();
-     setUserData({ email: "", password: "" });
-   };
+    await dispatch(signIn(userData));
+    await dispatch(getMySelf());
+    closeModal();
+    setUserData({ email: "", password: "" });
+  };
 
   const googleSignIn = () =>
     (window.location.href = "http://localhost:3000/auth/google");

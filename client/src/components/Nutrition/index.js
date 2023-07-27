@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 // componnents
-import NutritionCard from './NutritionCard'
-import NutritionCarousel from './NutritionCarousel'
-import NutritionHeroCarousel from './NutritionHeroCarousel'
+import NutritionCard from "./NutritionCard";
+import NutritionCarousel from "./NutritionCarousel";
+import NutritionHeroCarousel from "./NutritionHeroCarousel";
 
 const Nutrition = () => {
   return (
@@ -36,6 +36,6 @@ const Nutrition = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Nutrition
+export default Nutrition;

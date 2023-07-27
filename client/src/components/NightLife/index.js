@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
-// components 
-import NightLifeCarousel from './NightCarousel';
+// components
+import NightLifeCarousel from "./NightCarousel";
 
 const NightLife = () => {
   return (
@@ -12,6 +12,6 @@ const NightLife = () => {
       <NightLifeCarousel />
     </div>
   );
-}
+};
 
-export default NightLife
+export default NightLife;

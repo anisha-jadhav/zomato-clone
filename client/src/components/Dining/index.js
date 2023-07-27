@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 // components
-import DiningCarousel from './DiningCarousel'
+import DiningCarousel from "./DiningCarousel";
 
-const Dining  = () => {
+const Dining = () => {
   return (
     <div className="mb-10">
       <h1 className="text-xl my-4 md:my-8 md:text-3xl md:font-semibold">
@@ -12,6 +12,6 @@ const Dining  = () => {
       <DiningCarousel />
     </div>
   );
-}
+};
 
-export default Dining 
+export default Dining;

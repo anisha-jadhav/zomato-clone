@@ -14,7 +14,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { signOut } from "../../redux/reducers/auth/auth.action";
 import { clearUser } from "../../redux/reducers/user/user.action";
 
-
 const MobileNav = ({
   user,
   isDropdownOpen,
@@ -31,8 +30,8 @@ const MobileNav = ({
     signUp();
     setIsDropdownOpen(false);
   };
-  
-const dispatch = useDispatch();
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const SignOut = () => {
@@ -67,7 +66,8 @@ const dispatch = useDispatch();
                 src="/images/avatar.png"
                 alt="avatar"
                 className="w-full h-full rounded-full object-cover"
-              /> <user className="fullName"></user>
+              />{user.fullName}
+              <user className="fullName"></user>
             </div>
             {isDropdownOpen && (
               <div className="absolute shadow-lg py-3 -bottom-14 w-36 z-20 flex flex-col gap-2 bg-white border border-gray-200">
@@ -207,11 +207,11 @@ const Navbar = () => {
   const openSignUpModal = () => setOpenSignUp(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   //const user = {
-   // fullName: "Anisha",
+  // fullName: "Anisha",
   //};
 
   const user = useSelector((globalState) => globalState.user);
-  
+
   return (
     <>
       <SignIn isOpen={openSignIn} setIsOpen={setOpenSignIn} />

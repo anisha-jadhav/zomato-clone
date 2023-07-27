@@ -1,7 +1,7 @@
-import React from 'react'
-import { MdContentCopy } from "react-icons/md"
-import { FaDirections } from "react-icons/fa"
-import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet"
+import React from "react";
+import { MdContentCopy } from "react-icons/md";
+import { FaDirections } from "react-icons/fa";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 const MapView = (props) => {
   return (
@@ -35,8 +35,8 @@ const MapView = (props) => {
         </button>
         <a
           href={`https://www.google.com/maps/dir/?api=1&destination=${props.latAndLong}`}
-          target='_blank'
-          rel='noreferrer'
+          target="_blank"
+          rel="noreferrer"
           className="px-3 py-2 flex gap-2 items-center border text-gray-700 border-gray-400 rounded-lg "
         >
           <FaDirections className="text-zomato-400" /> Directions
@@ -44,6 +44,6 @@ const MapView = (props) => {
       </div>
     </>
   );
-}
+};
 
-export default MapView
+export default MapView;

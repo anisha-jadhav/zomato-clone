@@ -50,7 +50,6 @@ const TopBrandsCarousel = () => {
       title: "Natural Ice cream",
       time: "20 min",
     },
-    
   ];
 
   const slideConfig = {
