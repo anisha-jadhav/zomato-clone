@@ -48,7 +48,7 @@ Router.post(
   async (req, res) => {
     try {
       const { _id } = req.user;
-     // await validateId(req.params);
+      // await validateId(req.params);
       const { reviewData } = req.body;
 
       const review = await ReviewModel.create({ ...reviewData, user: _id });
@@ -82,7 +82,7 @@ Router.delete(
         _id: id,
         user: user._id,
       });
-        
+
       if (!delReview) {
         return res.json({ message: "Review not exists!" });
       }

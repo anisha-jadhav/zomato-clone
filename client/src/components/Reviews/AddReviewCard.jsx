@@ -1,21 +1,21 @@
-import React, {useState} from 'react'
-import ReviewModal from './ReviewModal'
+import React, { useState } from "react";
+import ReviewModal from "./ReviewModal";
 
 const AddReviewCard = () => {
-  const [isOpen, setIsOpen] = useState((false))
-  const [type, setType] = useState("")
-  
+  const [isOpen, setIsOpen] = useState(false);
+  const [type, setType] = useState("");
+
   const openModal = () => {
     if (!localStorage.zomatoUser) {
-      return alert("Please Sign In to post a review.")
+      return alert("Please Sign In to post a review.");
     }
 
-    setIsOpen(true)
-  }
+    setIsOpen(true);
+  };
 
   const getReviewType = (type) => {
-    setType(type)
-  }
+    setType(type);
+  };
   return (
     <>
       <ReviewModal isOpen={isOpen} setIsOpen={setIsOpen} setType={setType} />
@@ -45,6 +45,6 @@ const AddReviewCard = () => {
       </button>
     </>
   );
-}
+};
 
-export default AddReviewCard
+export default AddReviewCard;

@@ -3,7 +3,6 @@ import { IoMdArrowFropdown, IoCloseSharp } from "react-icons/io5";
 import { IoMdArrowDropup, IoMdArrowDropright } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
-
 // redux
 import { useSelector } from "react-redux";
 
@@ -11,8 +10,7 @@ import { useSelector } from "react-redux";
 import FoodItem from "./FoodItem";
 
 const CartData = ({ toggle }) => {
-  
-   const cart = useSelector((glocalState) => glocalState.cart.cart);
+  const cart = useSelector((glocalState) => glocalState.cart.cart);
   const navigate = useNavigate();
   const continueToCheckout = () => navigate("/checkout/orders");
 

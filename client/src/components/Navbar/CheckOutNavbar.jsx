@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const CheckoutNavbar = () => {
-    const user = useSelector((globalState) => globalState.user);
+  const user = useSelector((globalState) => globalState.user);
 
   const navigate = useNavigate();
 

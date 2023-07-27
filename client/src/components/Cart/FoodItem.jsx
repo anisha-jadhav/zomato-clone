@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { BsTrashFill } from "react-icons/bs";
 
 // redux
@@ -9,16 +9,15 @@ import {
   decrementQuantity,
 } from "../../redux/reducers/cart/cart.action";
 
-
 const FoodItem = (props) => {
- const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
- const deleteFoodFromCart = () => dispatch(deleteCart(props._id));
+  const deleteFoodFromCart = () => dispatch(deleteCart(props._id));
 
   const increment = () => dispatch(incrementQuantity(props._id));
   const decrement = () => {
-     if (props.quantity === 1) return;
-     dispatch(decrementQuantity(props._id));
+    if (props.quantity === 1) return;
+    dispatch(decrementQuantity(props._id));
   };
 
   return (
@@ -54,4 +53,4 @@ const FoodItem = (props) => {
   );
 };
 
-export default FoodItem
+export default FoodItem;

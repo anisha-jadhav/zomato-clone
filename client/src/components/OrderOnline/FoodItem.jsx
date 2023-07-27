@@ -11,35 +11,35 @@ import { addToCart } from "../../redux/reducers/cart/cart.action";
 const FoodItem = (props) => {
   const [food, setFood] = useState({});
 
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-   const cart = useSelector((globalState) => globalState.cart.cart);
+  const cart = useSelector((globalState) => globalState.cart.cart);
 
-   useEffect(() => {
-     dispatch(getFood(props._id))
-       .then((data) => {
-         setFood(data.payload.food);
-         dispatch(getImage(data.payload.food.photos)).then((data) => {
-           const { images } = data.payload;
-           images.length &&
-             setFood((prev) => ({ ...prev, image: images[0].location }));
-         });
-         return data.payload.food;
-       })
-       .then((data) => {
-         cart.forEach((each) => {
-           if (each._id === data._id) {
-             setFood((prev) => ({ ...prev, isAddedToCart: true }));
-           }
-         });
-       });
-   }, [cart]);
-  
-   const addFoodToCart = () => {
-     dispatch(addToCart({ ...food, quantity: 1, totalPrice: food.price }));
-     setFood((prev) => ({ ...prev, isAddedToCart: true }));
+  useEffect(() => {
+    dispatch(getFood(props._id))
+      .then((data) => {
+        setFood(data.payload.food);
+        dispatch(getImage(data.payload.food.photos)).then((data) => {
+          const { images } = data.payload;
+          images.length &&
+            setFood((prev) => ({ ...prev, image: images[0].location }));
+        });
+        return data.payload.food;
+      })
+      .then((data) => {
+        cart.forEach((each) => {
+          if (each._id === data._id) {
+            setFood((prev) => ({ ...prev, isAddedToCart: true }));
+          }
+        });
+      });
+  }, [cart]);
+
+  const addFoodToCart = () => {
+    dispatch(addToCart({ ...food, quantity: 1, totalPrice: food.price }));
+    setFood((prev) => ({ ...prev, isAddedToCart: true }));
   };
-  
+
   return (
     <>
       <div className="flex items-start gap-2">

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 // components
 import FoodItem from "./FoodItem";
 
@@ -20,6 +20,6 @@ const FoodList = (props) => {
       </div>
     </>
   );
-}
+};
 
-export default FoodList
+export default FoodList;

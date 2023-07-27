@@ -16,7 +16,7 @@ import { getRestaurant } from "../redux/reducers/restaurant/restaurant.action";
 
 const HomePage = () => {
   const { type } = useParams();
-  
+
   const dispatch = useDispatch();
 
   useEffect(() => {

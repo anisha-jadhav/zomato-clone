@@ -1,12 +1,11 @@
-import React, { useState, Fragment , useEffect} from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useParams } from "react-router-dom";
-import Rating from "react-rating-stars-component"
+import Rating from "react-rating-stars-component";
 
 // redux
 import { useDispatch } from "react-redux";
 import { postReview } from "../../redux/reducers/review/review.action";
-
 
 const ReviewModal = ({ isOpen, setIsOpen, type }) => {
   const [reviewData, setReviewData] = useState({
@@ -17,8 +16,7 @@ const ReviewModal = ({ isOpen, setIsOpen, type }) => {
     rating: 0,
   });
 
-   const dispatch = useDispatch();
-
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (type === "delivery")
@@ -68,7 +66,7 @@ const ReviewModal = ({ isOpen, setIsOpen, type }) => {
   };
 
   const submit = () => {
-   dispatch(postReview({ ...reviewData, restaurant: id }));
+    dispatch(postReview({ ...reviewData, restaurant: id }));
     closeModal();
     setReviewData({
       subject: "",
@@ -115,7 +113,7 @@ const ReviewModal = ({ isOpen, setIsOpen, type }) => {
                   >
                     Add Review
                   </Dialog.Title>
-                   <div className="mt-2 flex flex-col gap-4">
+                  <div className="mt-2 flex flex-col gap-4">
                     <div className="flex items-center gap-3">
                       <div className="flex items-center gap-2">
                         <input
@@ -175,7 +173,7 @@ const ReviewModal = ({ isOpen, setIsOpen, type }) => {
                   <div className="mt-4">
                     <button
                       type="button"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-zomato-400 px-4 py-2 text-sm font-medium text-white hover:bg-zomato-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-zomato-500 focus-visible:ring-offset-2"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-zomato-400 px-4 py-2 text-sm font-medium text-white hover:bg-zomato-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-zomato-500 focus-visible:ring-offset-2"
                       onClick={submit}
                     >
                       Add
